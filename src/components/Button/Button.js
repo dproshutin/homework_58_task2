@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import './Button.css';
 
-const Button = props => {
-    return (
-        <button
-            className="Button"
-            onClick={props.click}
-        >
-            {props.value}
-        </button>
-    );
-};
+class Button extends PureComponent {
+
+    render() {
+        return (
+            <button
+                className="Button"
+                onClick={this.props.click}
+            >
+                {this.props.value}
+            </button>
+        );
+    }
+}
 
 export default Button;
