@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './JokesCollector.css';
 import uuid from 'uuid/v1';
 import Button from "../../components/Button/Button";
 import JokesSection from "../../components/JokesSection/JokesSection";
