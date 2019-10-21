@@ -6,7 +6,8 @@ import JokesSection from "../../components/JokesSection/JokesSection";
 
 class JokesCollector extends Component {
     state = {
-        jokes: []
+        jokes: [],
+        number: 5
     };
 
     getJokes = (URL, number) => {
@@ -19,7 +20,7 @@ class JokesCollector extends Component {
     };
     changeJokes = () => {
         const JOKES_URL = 'https://api.chucknorris.io/jokes/random';
-        const promises = this.getJokes(JOKES_URL, 5);
+        const promises = this.getJokes(JOKES_URL, this.state.number);
         Promise.all(promises)
             .then(response => {
                 return response.map(joke => {
@@ -35,6 +36,14 @@ class JokesCollector extends Component {
             this.setState({jokes: updatedJokes});
         });
     };
+
+    onChange = (event) => {
+        const re = /^[0-9\b]+$/;
+        if (event.target.value == '' || re.test(event.target.value)) {
+            this.setState({number: event.target.value})
+        }
+    };
+
     componentDidMount() {
         this.changeJokes();
     }
@@ -57,6 +66,10 @@ class JokesCollector extends Component {
         }
         return (
             <div>
+                <input
+                    value={this.state.number}
+                    onChange={this.onChange}
+                />
                 <Button
                     value="Get jokes"
                     click={this.changeJokes}
