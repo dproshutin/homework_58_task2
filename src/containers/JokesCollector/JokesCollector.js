@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './JokesCollector.css';
 import Joke from "../../components/Joke/Joke";
+import uuid from 'uuid/v1';
+import Button from "../../components/Button/Button";
 
 class JokesCollector extends Component {
     state = {
@@ -24,7 +26,13 @@ class JokesCollector extends Component {
                     return joke.value;
                 })
             }).then(jokes => {
-                this.setState({jokes});
+                const updatedJokes = jokes.map(joke => {
+                    return {
+                        text: joke,
+                        id: uuid()
+                    }
+                });
+                this.setState({jokes: updatedJokes});
         });
     }
 
@@ -39,12 +47,16 @@ class JokesCollector extends Component {
         } else {
             jokesList = this.state.jokes.map(joke => (
                 <Joke
-                    value={joke}
+                    value={joke.text}
+                    key={joke.id}
                 />
             ));
         }
         return (
             <div>
+                <Button
+                    value="Get jokes"
+                />
                 {jokesList}
             </div>
         );
