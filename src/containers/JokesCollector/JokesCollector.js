@@ -39,7 +39,7 @@ class JokesCollector extends Component {
 
     onChange = (event) => {
         const re = /^[0-9\b]+$/;
-        if (event.target.value == '' || re.test(event.target.value)) {
+        if (event.target.value === '' || re.test(event.target.value)) {
             this.setState({number: event.target.value})
         }
     };
