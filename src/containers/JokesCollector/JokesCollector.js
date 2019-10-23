@@ -52,7 +52,8 @@ class JokesCollector extends Component {
         if (this.state.jokes.length === 0) {
             jokesList = (
                 <form>
-                    <p>No jokes about Chuck Norris</p>
+                    {/*<p>No jokes about Chuck Norris</p>*/}
+                    <div id="preloader"></div>
                 </form>
             );
         } else {
